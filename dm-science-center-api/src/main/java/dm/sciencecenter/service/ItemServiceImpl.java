@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ScienceCenterServiceImpl implements ScienceCenterService {
+public class ItemServiceImpl implements ItemService {
 
     @Autowired
     ItemRepository itemRepository;
@@ -23,6 +23,11 @@ public class ScienceCenterServiceImpl implements ScienceCenterService {
     @Override
     public List<Item> getAllItems() {
         return itemRepository.findAll();
+    }
+
+    @Override
+    public Item getItemById(Long id) {
+        return itemRepository.getOne(id);
     }
 
     @Override

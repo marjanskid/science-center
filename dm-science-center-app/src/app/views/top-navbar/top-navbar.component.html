@@ -1,0 +1,31 @@
+<!-- Navbar -->
+<nav class="navbar-expand-lg bg-dark" style="text-transform: uppercase">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <a class="navbar-brand" style="color: white; margin-left: 30px;" routerLink="/home">
+          <img src="../../../assets/images/sc-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      </a>
+
+      <ul class="navbar-nav mr-auto">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="navbar-nav" style="vertical-align: bottom">
+                  <a class="nav-item nav-link active" id="nav-link" style="color: white" routerLink="/all-items">
+                      <i class="material-icons">menu_book</i>
+                      Magazines
+                  </a>
+              </div>
+          </div>
+      </ul>
+
+      <ul class="navbar-nav mr-right" style="margin-right: 20px">
+          <li [hidden]="isLogin" class="nav-item">
+              <a class="nav-link" style="color: white" routerLink="/signin">
+                  <!--<i class="material-icons">supervised_user_circle</i>-->
+                  Sign In
+              </a>
+          </li>
+      </ul>
+
+  </div>
+
+</nav>

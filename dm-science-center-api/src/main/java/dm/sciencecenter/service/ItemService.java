@@ -4,7 +4,7 @@ import dm.sciencecenter.entities.Item;
 
 import java.util.List;
 
-public interface ScienceCenterService {
+public interface ItemService {
 
     String testService();
 
@@ -12,5 +12,9 @@ public interface ScienceCenterService {
 
     List<Item> getAllItems();
 
+    Item getItemById(Long id);
+
     Double getItemPrice(Long itemId);
+
+
 }

@@ -1,0 +1,40 @@
+<div class="container">
+    <br>
+    filteri pretrage u pripremi
+    <hr>
+    <h2 style="color:dodgerblue" class="text-left mb-3">Choose magazine</h2>
+    <div *ngIf="allItems.length > 0; then blockHasItems else blockHasNotItems"></div>
+        <ng-template #blockHasItems>
+            <ul class="list-group" style="margin-bottom: 20px;">
+                <li *ngFor="let item of allItems" class="list-group-item">
+                    <div class="row">
+                        <div class="col-3">
+                            <i style="margin-top: 50px; margin-left: 110px" class="material-icons">book</i>
+                            <p style="text-align: center;" class="thick">{{item.name}}</p>
+                        </div>
+                        <div class="separator"></div>
+                        <div style="margin-left: 40px; margin-top: 55px" class="col-2">
+                            <p style="text-align: center;" class="thick">{{item.id}}</p>
+                        </div>
+                        <div class="separator"></div>
+                        <div style="margin-left: 40px; margin-top: 55px" class="col-2">
+                            <p style="text-align: center;" class="thick">{{item.price}}</p>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="col-4">
+                            <button type="button" style="text-align: center; margin-left: 55px; margin-top: 40px" class="btn btn-outline-success"
+                                routerLink="magazine/{{item.id}}">
+                                Add to cart
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </ng-template>
+        <ng-template #blockHasNotItems>
+            <p class="thick" style="margin-left: 65px; margin-top: 5px">Still without magazines :(</p>
+        </ng-template>
+  </div>
+  <br>
+  <br>
+  <br>
