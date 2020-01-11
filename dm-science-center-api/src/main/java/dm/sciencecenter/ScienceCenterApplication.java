@@ -14,9 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @Import(Config.class)
 public class ScienceCenterApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ScienceCenterApplication.class, args);
-    }
+    public static void main(String[] args) { SpringApplication.run(ScienceCenterApplication.class, args); }
 
     @Bean
     @LoadBalanced

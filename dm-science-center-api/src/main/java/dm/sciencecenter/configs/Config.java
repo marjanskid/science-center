@@ -40,9 +40,11 @@ public class Config extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/science-center-api/**").permitAll()
+                .authorizeRequests().antMatchers("/science-center-api/**", "/h2-console/**").permitAll()
 				.antMatchers("/science-center-api/**").permitAll().anyRequest().authenticated().and()
                 .cors();
+
+        http.csrf().disable();
         http.headers().cacheControl();
         http.headers().frameOptions().disable();
     }
