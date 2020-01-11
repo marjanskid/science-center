@@ -10,6 +10,8 @@ import { TopNavbarComponent } from './views/top-navbar/top-navbar.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllItemsComponent } from './views/all-items/all-items.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { SignUpComponent } from './views/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import { AllItemsComponent } from './views/all-items/all-items.component';
     HomepageComponent,
     TopNavbarComponent,
     FooterComponent,
-    AllItemsComponent
+    AllItemsComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
