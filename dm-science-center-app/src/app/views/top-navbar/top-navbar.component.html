@@ -13,6 +13,10 @@
                       <i class="material-icons">menu_book</i>
                       Magazines
                   </a>
+                  <a class="nav-item nav-link active" id="nav-link" style="color: white" routerLink="/reviewer-approve">
+                    <i class="material-icons">book</i>
+                    Approve reviewer
+                </a>
               </div>
           </div>
       </ul>
@@ -24,6 +28,12 @@
                   Sign In
               </a>
           </li>
+          <li [hidden]="isLogin" class="nav-item">
+            <a class="nav-link" style="color: white" routerLink="/sign-up">
+                <!--<i class="material-icons">supervised_user_circle</i>-->
+                Register
+            </a>
+        </li>
       </ul>
 
   </div>

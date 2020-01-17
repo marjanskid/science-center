@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllItemsComponent } from './views/all-items/all-items.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { ReviewerFormComponent } from './views/reviewer-form/reviewer-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { SignUpComponent } from './views/sign-up/sign-up.component';
     FooterComponent,
     AllItemsComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    ReviewerFormComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,9 @@ import { SignUpComponent } from './views/sign-up/sign-up.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

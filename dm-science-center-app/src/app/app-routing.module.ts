@@ -4,7 +4,7 @@ import { HomepageComponent } from './views/homepage/homepage.component';
 import { AllItemsComponent } from './views/all-items/all-items.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
-
+import { ReviewerFormComponent } from './views/reviewer-form/reviewer-form.component';
 
 const routes: Routes = [
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent
+  },
+  {
+    path: 'reviewer-approve',
+    component: ReviewerFormComponent
   },
   {
     path: 'all-items',

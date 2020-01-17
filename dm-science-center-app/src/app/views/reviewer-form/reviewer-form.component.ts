@@ -1,29 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { matchOtherValidator } from './match-passwords';
 import { UserService } from 'src/app/services/user/user.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { RepositoryService } from 'src/app/services/repository/repository.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-reviewer-form',
+  templateUrl: './reviewer-form.component.html',
+  styleUrls: ['./reviewer-form.component.css']
 })
-export class SignUpComponent implements OnInit {
+export class ReviewerFormComponent implements OnInit {
 
-  private repeated_password = '';
-  private categories = [];
+  private uspesno = false;
   private formFieldsDto = null;
   private formFields = [];
-  private choosen_category = -1;
   private processInstance = '';
   private enumValues = [];
-  private tasks = [];
 
-  constructor(private userService: UserService) {
-
-    const x = userService.startRegistrationProcess();
+  constructor(private userService: UserService, private router: Router) {
+    console.log('sta se desava');
+    let x = userService.getReviewerForm();
 
     x.subscribe(
       res => {
@@ -32,9 +26,10 @@ export class SignUpComponent implements OnInit {
         this.formFieldsDto = res;
         this.formFields = res.formFields;
         this.processInstance = res.processInstanceId;
+        console.log(this.formFieldsDto.taskId + ' task id');
         this.formFields.forEach( (field) => {
 
-          if ( field.type.name === 'enum') {
+          if (field.type.name === 'enum') {
             this.enumValues = Object.keys(field.type.values);
           }
         });
@@ -43,12 +38,11 @@ export class SignUpComponent implements OnInit {
         console.log('Error occured');
       }
     );
-   }
-
-  ngOnInit() {
   }
 
-  onSubmit(value, form) {
+  ngOnInit() { }
+
+  onSubmit(value, form){
     let o = new Array();
     for (let property in value) {
       console.log(property);
@@ -57,12 +51,13 @@ export class SignUpComponent implements OnInit {
     }
 
     console.log(o);
-    const x = this.userService.registerUser(o, this.formFieldsDto.taskId);
-
+    const x = this.userService.putConfirmReviewer(this.formFieldsDto.taskId, o);
     x.subscribe(
       res => {
         console.log(res);
-        alert('You registered successfully!');
+        alert(res);
+        this.uspesno = true;
+        this.router.navigate(['home']);
       },
       err => {
         console.log('Error occured');
