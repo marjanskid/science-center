@@ -46,7 +46,7 @@ public class RegistrationEmail implements JavaDelegate {
         String password = "delijesever89";
         String emailSubject = "Account activation";
         String emailText = "To activate account click on this link: " +
-                "\n " + ApiConstants.apiBaseAddress + "/registration/activateUserAccount/" + username  + "/" + hashCode;
+                "\n " + ApiConstants.API_BASE_ADDRESS + "/registration/activateUserAccount/" + username  + "/" + hashCode;
 
         sendEmail(from, password, emailAddress, emailSubject, emailText);
     }

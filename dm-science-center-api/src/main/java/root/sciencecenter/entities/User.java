@@ -28,7 +28,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    private String scientificAreas;
+    @ManyToOne
+    private ScientificArea scientificArea;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -44,14 +45,13 @@ public class User {
     public User() {}
 
     public User(String firstName, String lastName, String city, String country, String title, String email,
-                String scientificAreas, String username, String password, boolean activatedUser) {
+                String username, String password, boolean activatedUser) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.country = country;
         this.title = title;
         this.email = email;
-        this.scientificAreas = scientificAreas;
         this.username = username;
         this.password = password;
         this.activatedUser = activatedUser;
@@ -113,14 +113,6 @@ public class User {
         this.email = email;
     }
 
-    public String getScientificAreas() {
-        return scientificAreas;
-    }
-
-    public void setScientificAreas(String scientificAreas) {
-        this.scientificAreas = scientificAreas;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -151,5 +143,13 @@ public class User {
 
     public void setActivatedUser(boolean activatedUser) {
         this.activatedUser = activatedUser;
+    }
+
+    public ScientificArea getScientificArea() {
+        return scientificArea;
+    }
+
+    public void setScientificArea(ScientificArea scientificArea) {
+        this.scientificArea = scientificArea;
     }
 }

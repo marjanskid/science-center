@@ -18,6 +18,9 @@ import { ReviewerFormComponent } from './views/reviewer-form/reviewer-form.compo
 import { NewMagazineFormComponent } from './views/new-magazine-form/new-magazine-form.component';
 import { AddReviewersAndEditorsComponent } from './views/add-reviewers-and-editors/add-reviewers-and-editors.component';
 import { ApproveMagazineFormComponent } from './views/approve-magazine-form/approve-magazine-form.component';
+import { Authorized } from '../app/guards/authorized.guard';
+import { Admin } from '../app/guards/admin.guard';
+import { Notauthorized } from '../app/guards/notauthorized.guard';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,7 @@ import { ApproveMagazineFormComponent } from './views/approve-magazine-form/appr
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [Notauthorized, Authorized, Admin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

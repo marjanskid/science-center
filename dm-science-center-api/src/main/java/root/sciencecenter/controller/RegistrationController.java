@@ -4,6 +4,7 @@ import org.camunda.bpm.engine.*;
 import org.camunda.bpm.engine.externaltask.LockedExternalTask;
 import org.camunda.bpm.engine.form.FormField;
 import org.camunda.bpm.engine.form.TaskFormData;
+import org.camunda.bpm.engine.impl.form.type.EnumFormType;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import root.sciencecenter.dtos.FormFieldsDto;
 import root.sciencecenter.dtos.FormSubmissionDto;
+import root.sciencecenter.entities.ScientificArea;
+import root.sciencecenter.services.ScientificAreaService;
 import root.sciencecenter.services.UserService;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/registration")
@@ -42,12 +46,29 @@ public class RegistrationController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ScientificAreaService scientificAreaService;
+
     @GetMapping(path = "/getRegistrationForm", produces = "application/json")
     public @ResponseBody FormFieldsDto getRegistrationForm() {
         ProcessInstance pi = runtimeService.startProcessInstanceByKey("Process_17a6cmn");
         Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).list().get(0);
         TaskFormData tfd = formService.getTaskFormData(task.getId());
         List<FormField> properties = tfd.getFormFields();
+
+        List<ScientificArea> allScientificAreas = scientificAreaService.getAllScientificAreas();
+
+        for (FormField ff : properties) {
+            System.out.println(ff.getLabel());
+            if (ff.getId().equals("registracija_noblasti_id")) {
+                EnumFormType enumFormType = (EnumFormType) ff.getType();
+                Map<String, String> values = enumFormType.getValues();
+                for (ScientificArea sa : allScientificAreas) {
+                    values.put(sa.getId().toString(), sa.getName());
+                }
+                values.put("0", "izaberite oblast...");
+            }
+        }
 
         return new FormFieldsDto(task.getId(), pi.getId(), properties);
     }

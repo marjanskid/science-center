@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import root.sciencecenter.dtos.UserDto;
 import root.sciencecenter.dtos.UserSignInDto;
 import root.sciencecenter.entities.User;
 import root.sciencecenter.services.UserService;
@@ -25,7 +26,11 @@ public class UserController {
         if (foundUser != null) {
             if (foundUser.isActivatedUser()) {
                 System.out.println("Successful sign in!");
-                return new ResponseEntity<String>("Successful sign in!", HttpStatus.OK);
+                UserDto userDto = new UserDto();
+                userDto.username = foundUser.getUsername();
+                userDto.role = foundUser.getUserRole().toString();
+                System.out.println(userDto.role);
+                return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
             } else {
                 System.out.println("User account is not activated!");
                 return new ResponseEntity<String>("User account is not activated!", HttpStatus.OK);

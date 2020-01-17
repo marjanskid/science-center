@@ -50,6 +50,8 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(value, form) {
     let o = new Array();
+    console.log(value);
+    console.log(form.values);
     for (let property in value) {
       console.log(property);
       console.log(value[property]);

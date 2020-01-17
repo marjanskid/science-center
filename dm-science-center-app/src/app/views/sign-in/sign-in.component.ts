@@ -10,6 +10,9 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class SignInComponent implements OnInit {
 
+  private user;
+  private role;
+
   errorMessage: string;
 
   loginForm = new FormGroup({
@@ -30,15 +33,12 @@ export class SignInComponent implements OnInit {
     this.userService.signin(this.username.value, this.password.value).subscribe(
       data => {
         location.reload();
+        this.user = JSON.parse(localStorage.getItem('user'));
+        this.role = localStorage.getItem('role');
         this.router.navigate(['/home']);
       },
       error => {
         this.errorMessage = error;
-        if (error.includes('password')) {
-          this.password.setErrors({ passwordError: error });
-        } else {
-          this.username.setErrors({ usernameError: error });
-        }
       }
     );
   }

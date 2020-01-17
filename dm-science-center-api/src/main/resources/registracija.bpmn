@@ -42,10 +42,8 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="registracija_noblasti_id" label="Naučne oblasti" type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
+          <camunda:formField id="registracija_noblasti_id" label="Naučne oblasti" type="enum">
+            <camunda:value id="izaberite_noblast" name="Izaberite..." />
           </camunda:formField>
           <camunda:formField id="registracija_username_id" label="Korisničko ime" type="string">
             <camunda:validation>

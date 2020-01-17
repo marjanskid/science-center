@@ -32,10 +32,29 @@ export class UserService {
       username, password
     }).pipe(map(user => {
       if (user) {
-        localStorage.setItem('sessionUser', JSON.stringify(user));
+        localStorage.setItem('sessionUserName', JSON.stringify(user.username));
+        localStorage.setItem('sessionUserRole', JSON.stringify(user.role));
       }
       return user;
     }
     ));
+  }
+
+  getSessionUserName() {
+    const sessionUsername = JSON.parse(localStorage.getItem('sessionUserName'));
+    if (sessionUsername) {
+      return sessionUsername;
+    }
+
+    return null;
+  }
+
+  getSessionUseRole() {
+    const sessionUserRole = JSON.parse(localStorage.getItem('sessionUserRole'));
+    if (sessionUserRole) {
+      return sessionUserRole;
+    }
+
+    return null;
   }
 }

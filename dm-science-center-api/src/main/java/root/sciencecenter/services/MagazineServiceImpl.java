@@ -44,7 +44,7 @@ public class MagazineServiceImpl implements MagazineService {
             return Long.parseLong(number);
         }
         catch(NumberFormatException e) {
-            System.out.println("jedi mi kurac");
+            System.out.println("nfe exception");
             return null;
         }
     }

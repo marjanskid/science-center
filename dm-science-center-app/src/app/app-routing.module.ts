@@ -8,6 +8,9 @@ import { ReviewerFormComponent } from './views/reviewer-form/reviewer-form.compo
 import { NewMagazineFormComponent } from './views/new-magazine-form/new-magazine-form.component';
 import { AddReviewersAndEditorsComponent } from './views/add-reviewers-and-editors/add-reviewers-and-editors.component';
 import { ApproveMagazineFormComponent } from './views/approve-magazine-form/approve-magazine-form.component';
+import { Notauthorized } from './guards/notauthorized.guard';
+import { Admin } from './guards/admin.guard';
+import { Authorized } from './guards/authorized.guard';
 
 const routes: Routes = [
   {
@@ -16,27 +19,33 @@ const routes: Routes = [
   },
   {
     path: 'sign-in',
-    component: SignInComponent
+    component: SignInComponent,
+    canActivate: [Notauthorized]
   },
   {
     path: 'sign-up',
-    component: SignUpComponent
+    component: SignUpComponent,
+    canActivate: [Notauthorized]
   },
   {
     path: 'approve-reviewer',
-    component: ReviewerFormComponent
+    component: ReviewerFormComponent,
+    canActivate: [Admin]
   },
   {
     path: 'new-magazine',
-    component: NewMagazineFormComponent
+    component: NewMagazineFormComponent,
+    canActivate: [Authorized]
   },
   {
     path: 'add-reviewers-and-editors',
-    component: AddReviewersAndEditorsComponent
+    component: AddReviewersAndEditorsComponent,
+    canActivate: [Authorized]
   },
   {
     path: 'approve-magazine',
-    component: ApproveMagazineFormComponent
+    component: ApproveMagazineFormComponent,
+    canActivate: [Admin]
   },
   {
     path: 'all-items',
