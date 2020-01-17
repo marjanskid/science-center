@@ -12,11 +12,11 @@ import { RepositoryService } from 'src/app/services/repository/repository.servic
 })
 export class SignUpComponent implements OnInit {
 
-  private repeated_password = '';
+  private repeatedRassword = '';
   private categories = [];
   private formFieldsDto = null;
   private formFields = [];
-  private choosen_category = -1;
+  private choosenCategory = -1;
   private processInstance = '';
   private enumValues = [];
   private tasks = [];

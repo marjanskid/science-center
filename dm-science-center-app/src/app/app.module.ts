@@ -15,6 +15,9 @@ import { AllItemsComponent } from './views/all-items/all-items.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
 import { ReviewerFormComponent } from './views/reviewer-form/reviewer-form.component';
+import { NewMagazineFormComponent } from './views/new-magazine-form/new-magazine-form.component';
+import { AddReviewersAndEditorsComponent } from './views/add-reviewers-and-editors/add-reviewers-and-editors.component';
+import { ApproveMagazineFormComponent } from './views/approve-magazine-form/approve-magazine-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ReviewerFormComponent } from './views/reviewer-form/reviewer-form.compo
     AllItemsComponent,
     SignInComponent,
     SignUpComponent,
-    ReviewerFormComponent
+    ReviewerFormComponent,
+    NewMagazineFormComponent,
+    AddReviewersAndEditorsComponent,
+    ApproveMagazineFormComponent
   ],
   imports: [
     BrowserModule,

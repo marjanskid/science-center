@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user/user.service';
+import { MagazineService } from 'src/app/services/magazine/magazine.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reviewer-form',
-  templateUrl: './reviewer-form.component.html',
-  styleUrls: ['./reviewer-form.component.css']
+  selector: 'app-add-reviewers-and-editors',
+  templateUrl: './add-reviewers-and-editors.component.html',
+  styleUrls: ['./add-reviewers-and-editors.component.css']
 })
-export class ReviewerFormComponent implements OnInit {
+export class AddReviewersAndEditorsComponent implements OnInit {
 
   private uspesno = false;
   private formFieldsDto = null;
@@ -15,9 +15,9 @@ export class ReviewerFormComponent implements OnInit {
   private processInstance = '';
   private enumValues = [];
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private magazineService: MagazineService, private router: Router) {
     console.log('sta se desava');
-    const x = userService.getReviewerForm();
+    const x = magazineService.getReviewersAndEditorsForm();
 
     x.subscribe(
       res => {
@@ -51,7 +51,7 @@ export class ReviewerFormComponent implements OnInit {
     }
 
     console.log(o);
-    const x = this.userService.putConfirmReviewer(this.formFieldsDto.taskId, o);
+    const x = this.magazineService.postReviewersAndEditorsForm(this.formFieldsDto.taskId, o);
     x.subscribe(
       res => {
         console.log(res);

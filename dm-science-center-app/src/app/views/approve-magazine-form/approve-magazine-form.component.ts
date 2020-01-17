@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user/user.service';
+import { MagazineService } from 'src/app/services/magazine/magazine.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reviewer-form',
-  templateUrl: './reviewer-form.component.html',
-  styleUrls: ['./reviewer-form.component.css']
+  selector: 'app-approve-magazine-form',
+  templateUrl: './approve-magazine-form.component.html',
+  styleUrls: ['./approve-magazine-form.component.css']
 })
-export class ReviewerFormComponent implements OnInit {
+export class ApproveMagazineFormComponent implements OnInit {
 
   private uspesno = false;
   private formFieldsDto = null;
@@ -15,9 +15,9 @@ export class ReviewerFormComponent implements OnInit {
   private processInstance = '';
   private enumValues = [];
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private magazineService: MagazineService, private router: Router) {
     console.log('sta se desava');
-    const x = userService.getReviewerForm();
+    const x = magazineService.getApproveMagazineForm();
 
     x.subscribe(
       res => {
@@ -51,7 +51,7 @@ export class ReviewerFormComponent implements OnInit {
     }
 
     console.log(o);
-    const x = this.userService.putConfirmReviewer(this.formFieldsDto.taskId, o);
+    const x = this.magazineService.postApproveMagazineForm(this.formFieldsDto.taskId, o);
     x.subscribe(
       res => {
         console.log(res);

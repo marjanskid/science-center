@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user/user.service';
+import { MagazineService } from 'src/app/services/magazine/magazine.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reviewer-form',
-  templateUrl: './reviewer-form.component.html',
-  styleUrls: ['./reviewer-form.component.css']
+  selector: 'app-new-magazine-form',
+  templateUrl: './new-magazine-form.component.html',
+  styleUrls: ['./new-magazine-form.component.css']
 })
-export class ReviewerFormComponent implements OnInit {
+export class NewMagazineFormComponent implements OnInit {
 
-  private uspesno = false;
+  private repeatedRassword = '';
+  private categories = [];
   private formFieldsDto = null;
   private formFields = [];
+  private choosenCategory = -1;
   private processInstance = '';
   private enumValues = [];
+  private tasks = [];
 
-  constructor(private userService: UserService, private router: Router) {
-    console.log('sta se desava');
-    const x = userService.getReviewerForm();
+  constructor(private magazineService: MagazineService, private router: Router) {
+
+    const x = magazineService.startNewMagazineProcess();
 
     x.subscribe(
       res => {
@@ -26,7 +29,6 @@ export class ReviewerFormComponent implements OnInit {
         this.formFieldsDto = res;
         this.formFields = res.formFields;
         this.processInstance = res.processInstanceId;
-        console.log(this.formFieldsDto.taskId + ' task id');
         this.formFields.forEach( (field) => {
 
           if (field.type.name === 'enum') {
@@ -38,9 +40,10 @@ export class ReviewerFormComponent implements OnInit {
         console.log('Error occured');
       }
     );
-  }
+   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   onSubmit(value, form) {
     let o = new Array();
@@ -51,16 +54,18 @@ export class ReviewerFormComponent implements OnInit {
     }
 
     console.log(o);
-    const x = this.userService.putConfirmReviewer(this.formFieldsDto.taskId, o);
+    const x = this.magazineService.postNewMagazine(o, this.formFieldsDto.taskId);
+
     x.subscribe(
       res => {
         console.log(res);
-        alert(res);
-        this.uspesno = true;
-        this.router.navigate(['home']);
+        alert('You created new magazine successfully!');
+        this.router.navigate(['add-reviewers-and-editors']);
       },
       err => {
         console.log('Error occured');
+        console.log(err);
+        alert('You have tried to create magazine with existing issnNumber!');
       }
     );
   }
