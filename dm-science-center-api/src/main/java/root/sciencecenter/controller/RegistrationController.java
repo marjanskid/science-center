@@ -5,6 +5,7 @@ import org.camunda.bpm.engine.externaltask.LockedExternalTask;
 import org.camunda.bpm.engine.form.FormField;
 import org.camunda.bpm.engine.form.TaskFormData;
 import org.camunda.bpm.engine.impl.form.type.EnumFormType;
+import org.camunda.bpm.engine.runtime.MessageCorrelationResult;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,8 @@ public class RegistrationController {
         TaskFormData tfd = formService.getTaskFormData(task.getId());
         List<FormField> properties = tfd.getFormFields();
 
+        System.out.println(pi.getId());
+
         List<ScientificArea> allScientificAreas = scientificAreaService.getAllScientificAreas();
 
         for (FormField ff : properties) {
@@ -94,28 +97,15 @@ public class RegistrationController {
     public @ResponseBody ResponseEntity getHash(@PathVariable String username, @PathVariable String hashCode) {
         System.out.println(hashCode);
         if (userService.activateUserAccount(username, hashCode)) {
-            List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(1, "externalWorkerId")
-                    .topic("User account activation", 60L * 1000L)
-                    .execute();
 
-            for (LockedExternalTask task : tasks) {
-                System.out.println("Sta se radi u ovoj for petlji");
-                try {
-                    String topic = task.getTopicName();
-                    externalTaskService.complete(task.getId(), "externalWorkerId");
-                }
-                catch(Exception e) {
-                    System.out.println("External task nije uspesno zavrsen!");
-                }
-            }
+            String processInstanceId = "423d8f5c-397c-11ea-9da8-005056c00008";
+            System.out.println("Process instance " + processInstanceId);
 
-            String content = "<header>" + "<h1>Korisnicki nalog je uspesno aktiviran!</h1>" + "</header>";
-            HttpHeaders responseHeaders = new HttpHeaders();
-            responseHeaders.setContentType(MediaType.TEXT_HTML);
+            // MessageCorrelationResult results = runtimeService.createMessageCorrelation("PotvrdaMejla")
+            //        .processInstanceId(processInstanceId).correlateWithResult();
 
             return new ResponseEntity<String>("Aktivacija korisnickog naloga je uspesna", HttpStatus.OK);
         }
-
 
         return new ResponseEntity<String>("Desila se greska prilikom aktivacije korisnickog naloga", HttpStatus.OK);
     }

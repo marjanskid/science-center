@@ -52,8 +52,6 @@ public class SaveRegistration implements JavaDelegate {
 
         // String scientificArea = (String) runtimeService.getVariable("Process_17a6cmn", "noblast");
         //List<VariableInstance> variables = runtimeService.createVariableInstanceQuery().variableName("noblast").list();
-        String var = (String) delegateExecution.getVariable("registracija_username_id");
-        System.out.println("enum: " + var);
 
         String scientificArea = "Baze podataka";
 

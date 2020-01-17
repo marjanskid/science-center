@@ -42,9 +42,7 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="registracija_noblasti_id" label="Naučne oblasti" type="enum">
-            <camunda:value id="izaberite_noblast" name="Izaberite..." />
-          </camunda:formField>
+          <camunda:formField id="registracija_noblasti_id" label="Naučne oblasti" type="enum" />
           <camunda:formField id="registracija_username_id" label="Korisničko ime" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
@@ -120,7 +118,12 @@
       <bpmn:outgoing>SequenceFlow_04g90zn</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_04g90zn" sourceRef="ServiceTask_0bza9ue" targetRef="ExclusiveGateway_0798ss5" />
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_02dy8hb" name="PotvrdaMejla">
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0d179zg" messageRef="Message_0ayslk7" />
+    </bpmn:intermediateCatchEvent>
   </bpmn:process>
+  <bpmn:message id="Message_0nf5yab" name="PotvrdaMejla" />
+  <bpmn:message id="Message_0ayslk7" name="PotvrdaMejla" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_17a6cmn">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
@@ -226,6 +229,12 @@
         <di:waypoint x="860" y="617" />
         <di:waypoint x="860" y="475" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_02dy8hb_di" bpmnElement="IntermediateCatchEvent_02dy8hb">
+        <dc:Bounds x="862" y="552" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="787" y="563" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
