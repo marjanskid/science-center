@@ -21,7 +21,7 @@ export class AllItemsComponent implements OnInit {
 
   ngOnInit() {
     console.log('oninit');
-    this.getAllItems();
+    // this.getAllItems();
   }
 
   getAllItems() {
@@ -31,16 +31,35 @@ export class AllItemsComponent implements OnInit {
         this.allItems = data;
       },
       error => {
-        console.log('pas mater');
+        console.log('error');
         console.log(error);
-        console.log('pas mater');
+      }
+    );
+  }
+
+  buyItem(itemId: number) {
+    for (const i of this.allItems) {
+      if (i.id === itemId) {
+        // this.callBuyItemService(i.price);
+      }
+    }
+  }
+
+  callBuyItemService(itemId: number) {
+    this.itemService.buyItemWithId(itemId).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log('by item id error');
+        console.log(error);
       }
     );
   }
 
   initialize() {
-    this.allItems.push(new Item(12, 'magazin1'));
-    this.allItems.push(new Item(24, 'Kobe The Black Mamba'));
+    this.allItems.push(new Item(12, 'Nacionalna geografija', 790));
+    this.allItems.push(new Item(24, 'Kobe - The Black Mamba', 1590));
   }
 
 }

@@ -7,6 +7,7 @@ import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -108,6 +109,20 @@ public class MagazineController {
         formService.submitTaskForm(taskId, map);
 
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAll() {
+        System.out.println("magazine - getAll");
+        return new ResponseEntity<>(magazineService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/buyItemWithId", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> buyItemWithId(@RequestBody Long itemId) {
+        System.out.println("magazine - buyItemWithId");
+        System.out.println("itemId: " + itemId);
+
+        return new ResponseEntity<>("sve je kul", HttpStatus.OK);
     }
 
     private HashMap<String, Object> mapListToDto(List<FormSubmissionDto> list) {

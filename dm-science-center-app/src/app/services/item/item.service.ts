@@ -13,7 +13,14 @@ export class ItemService {
 
   getAllItems() {
     console.log('ItemService -> getAllItems');
-    return this.http.get(environment.apiUrl + '/science-center-api/item/all')
+    return this.http.get(environment.apiUrl + '/magazine/getAll')
     .pipe(map(allItems => allItems));
+  }
+
+  buyItemWithId(itemId: number) {
+    console.log('ItemService -> buyItemWithId');
+    console.log('itemId: ' + itemId);
+    return this.http.post(environment.apiUrl + '/magazine/buyItemWithId', itemId)
+    .pipe(map(message => message));
   }
 }

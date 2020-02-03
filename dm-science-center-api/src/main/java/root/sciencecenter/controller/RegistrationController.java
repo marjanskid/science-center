@@ -98,8 +98,7 @@ public class RegistrationController {
         System.out.println(hashCode);
         if (userService.activateUserAccount(username, hashCode)) {
 
-            String processInstanceId = "423d8f5c-397c-11ea-9da8-005056c00008";
-            System.out.println("Process instance " + processInstanceId);
+            // System.out.println("Process instance " + processInstanceId);
 
             // MessageCorrelationResult results = runtimeService.createMessageCorrelation("PotvrdaMejla")
             //        .processInstanceId(processInstanceId).correlateWithResult();

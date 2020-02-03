@@ -39,6 +39,11 @@ public class MagazineServiceImpl implements MagazineService {
         return retValue;
     }
 
+    @Override
+    public List<Magazine> getAll() {
+        return magazineRepository.findAll();
+    }
+
     private Long getLongValue(String number) {
         try {
             return Long.parseLong(number);
