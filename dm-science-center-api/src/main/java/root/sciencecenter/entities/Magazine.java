@@ -22,6 +22,9 @@ public class Magazine {
     @Column(nullable = false)
     private MagazineSubscriber magazineSubscriber;
 
+    @Column(nullable = true)
+    private boolean subscriptionPayed;
+
     @ManyToOne
     private User chiefEditor;
 
@@ -89,6 +92,14 @@ public class Magazine {
 
     public void setMagazineSubscriber(MagazineSubscriber magazineSubscriber) {
         this.magazineSubscriber = magazineSubscriber;
+    }
+
+    public boolean isSubscriptionPayed() {
+        return subscriptionPayed;
+    }
+
+    public void setSubscriptionPayed(boolean subscriptionPayed) {
+        this.subscriptionPayed = subscriptionPayed;
     }
 
     public User getChiefEditor() {

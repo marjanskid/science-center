@@ -43,9 +43,5 @@ public class ActivateMagazine implements JavaDelegate {
             System.out.println("Casopis nije aktiviran");
         }
 
-
-
-
-
     }
 }

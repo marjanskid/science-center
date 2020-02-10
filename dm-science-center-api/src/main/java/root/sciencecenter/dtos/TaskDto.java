@@ -1,16 +1,28 @@
 package root.sciencecenter.dtos;
 
+import java.util.List;
+
+import org.camunda.bpm.engine.form.FormField;
+
 public class TaskDto {
-	
+
 	String taskId;
 	String name;
 	String assignee;
-	
+	List<FormField> formFields;
+
 	public TaskDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
+	public TaskDto(String taskId, String name, String assignee, List<FormField> formFields) {
+		super();
+		this.taskId = taskId;
+		this.name = name;
+		this.assignee = assignee;
+		this.formFields = formFields;
+	}
+
 	public TaskDto(String taskId, String name, String assignee) {
 		super();
 		this.taskId = taskId;
@@ -40,6 +52,14 @@ public class TaskDto {
 
 	public void setAssignee(String assignee) {
 		this.assignee = assignee;
+	}
+
+	public List<FormField> getFormFields() {
+		return formFields;
+	}
+
+	public void setFormFields(List<FormField> formFields) {
+		this.formFields = formFields;
 	}
 
 }

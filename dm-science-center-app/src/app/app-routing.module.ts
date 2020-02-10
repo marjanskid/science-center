@@ -11,6 +11,10 @@ import { ApproveMagazineFormComponent } from './views/approve-magazine-form/appr
 import { Notauthorized } from './guards/notauthorized.guard';
 import { Admin } from './guards/admin.guard';
 import { Authorized } from './guards/authorized.guard';
+import { NewArticleComponent } from './views/new-article/new-article.component';
+import { ArticleCoauthorInfoComponent } from './views/article-coauthor-info/article-coauthor-info.component';
+import { ArticleBasicInfoComponent } from './views/article-basic-info/article-basic-info.component';
+import { TaskDetailsComponent } from './views/task-details/task-details.component';
 
 const routes: Routes = [
   {
@@ -46,6 +50,25 @@ const routes: Routes = [
     path: 'approve-magazine',
     component: ApproveMagazineFormComponent,
     canActivate: [Admin]
+  },
+  {
+    path: 'new-article',
+    component: NewArticleComponent,
+    canActivate: [Authorized]
+  },
+  {
+    path: 'article-basic-info/:processInstanceId',
+    component: ArticleBasicInfoComponent,
+    canActivate: [Authorized]
+  },
+  {
+    path: 'article-coauthor-info/:processInstanceId',
+    component: ArticleCoauthorInfoComponent,
+    canActivate: [Authorized]
+  },
+  {
+    path: 'task-details/:taskId',
+    component: TaskDetailsComponent
   },
   {
     path: 'all-items',

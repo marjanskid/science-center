@@ -21,6 +21,11 @@ import { ApproveMagazineFormComponent } from './views/approve-magazine-form/appr
 import { Authorized } from '../app/guards/authorized.guard';
 import { Admin } from '../app/guards/admin.guard';
 import { Notauthorized } from '../app/guards/notauthorized.guard';
+import { NewArticleComponent } from './views/new-article/new-article.component';
+import { ArticleCoauthorInfoComponent } from './views/article-coauthor-info/article-coauthor-info.component';
+import { ArticleBasicInfoComponent } from './views/article-basic-info/article-basic-info.component';
+import { AllTasksComponent } from './views/all-tasks/all-tasks.component';
+import { TaskDetailsComponent } from './views/task-details/task-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { Notauthorized } from '../app/guards/notauthorized.guard';
     ReviewerFormComponent,
     NewMagazineFormComponent,
     AddReviewersAndEditorsComponent,
-    ApproveMagazineFormComponent
+    ApproveMagazineFormComponent,
+    NewArticleComponent,
+    ArticleCoauthorInfoComponent,
+    ArticleBasicInfoComponent,
+    AllTasksComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +54,7 @@ import { Notauthorized } from '../app/guards/notauthorized.guard';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [Notauthorized, Authorized, Admin],
   bootstrap: [AppComponent]

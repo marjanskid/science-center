@@ -10,4 +10,7 @@ public interface MagazineRepository extends JpaRepository<Magazine, Long> {
 
     @Query(value = "SELECT * FROM MAGAZINE WHERE MAGAZINE.ISSN_NUMBER =?1", nativeQuery = true)
     Magazine findByIssnNumber(Long issnNumber);
+
+    @Query(value = "SELECT * FROM MAGAZINE WHERE MAGAZINE.NAME =?1", nativeQuery = true)
+    Magazine findByName(String magazineName);
 }

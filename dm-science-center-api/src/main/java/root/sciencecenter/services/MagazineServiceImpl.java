@@ -40,6 +40,13 @@ public class MagazineServiceImpl implements MagazineService {
     }
 
     @Override
+    public Magazine getMagazineByName(FormSubmissionDto dto) {
+        String magazineName = dto.getFieldValue();
+        System.out.println("magazineName: " + magazineName);
+        return magazineRepository.findByName(magazineName);
+    }
+
+    @Override
     public List<Magazine> getAll() {
         return magazineRepository.findAll();
     }

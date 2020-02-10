@@ -33,8 +33,8 @@ export class SignInComponent implements OnInit {
     this.userService.signin(this.username.value, this.password.value).subscribe(
       data => {
         location.reload();
-        this.user = JSON.parse(localStorage.getItem('user'));
-        this.role = localStorage.getItem('role');
+        this.user = JSON.parse(localStorage.getItem('sessionUserName'));
+        this.role = localStorage.getItem('sessionUserRole');
         this.router.navigate(['/home']);
       },
       error => {
