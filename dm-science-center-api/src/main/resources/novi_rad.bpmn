@@ -305,6 +305,9 @@
       <bpmn:outgoing>SequenceFlow_02nmrx3</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Task_1ccoxpa" name="Slanje mejla obaveštenja o prekidu akcije" camunda:expression="${1 == 1}">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="root.sciencecenter.services.AuthorCorrectionTimeoutMail" event="start" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0t068sy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ahi9vq</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -313,28 +316,17 @@
       <bpmn:incoming>SequenceFlow_1ahi9vq</bpmn:incoming>
       <bpmn:terminateEventDefinition />
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_1dpzxf0" name="Sistem automatski bira urednika naučne oblasti" camunda:expression="${noblasti_rad_id != &#34;noblast_nema&#34;}" camunda:resultVariable="urednik_pronadjen">
+    <bpmn:serviceTask id="Task_1dpzxf0" name="Sistem automatski bira urednika naučne oblasti" camunda:class="root.sciencecenter.services.ChooseArticleChiefEditor">
       <bpmn:incoming>SequenceFlow_1uc6r90</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1adi5ye</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1adi5ye" sourceRef="Task_1dpzxf0" targetRef="Task_15e9flv" />
-    <bpmn:serviceTask id="Task_15e9flv" name="Slanje mejla uredniku" camunda:expression="${urednik}" camunda:resultVariable="odabrani_urednik">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="urednik">
-            <camunda:script scriptFormat="javascript">if(urednik_pronadjen){
-   noblasti_rad_id;
-} else {        
-   odabir_casopisa_urednik_id;
-}</camunda:script>
-          </camunda:inputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
+    <bpmn:serviceTask id="Task_15e9flv" name="Slanje mejla uredniku" camunda:class="root.sciencecenter.services.ArticleChiefEditorMail">
       <bpmn:incoming>SequenceFlow_1adi5ye</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0gbeiis</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0gbeiis" sourceRef="Task_15e9flv" targetRef="Task_0w5ozhw" />
-    <bpmn:userTask id="Task_0xvnyiu" name="Odabir recenzenata" camunda:assignee="${odabrani_urednik}">
+    <bpmn:userTask id="Task_0xvnyiu" name="Odabir recenzenata" camunda:assignee="${articleChiefEditor}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="recenzent" label="Recenzent ${br_recenz}" type="enum" />
@@ -431,7 +423,7 @@ execution.setVariable("br_recenz", 1);</bpmn:script>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1tg6yis" sourceRef="Task_0y7xfw5" targetRef="Task_15t65cb" />
     <bpmn:sequenceFlow id="SequenceFlow_0hwhyep" sourceRef="Task_15t65cb" targetRef="Task_0euou6i" />
-    <bpmn:userTask id="Task_15t65cb" name="Dodavanaje novog recenzenta" camunda:assignee="${odabrani_urednik}">
+    <bpmn:userTask id="Task_15t65cb" name="Dodavanaje novog recenzenta" camunda:assignee="${articleChiefEditor}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="recenzent" label="Recenzent ${br_recenz}" type="string" />
@@ -484,7 +476,7 @@ if (formFields!=null){
       <bpmn:outgoing>SequenceFlow_1epjfdw</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1epjfdw" sourceRef="Task_0xxjd67" targetRef="Task_1c2jok2" />
-    <bpmn:userTask id="Task_1c2jok2" name="Analiza od strane urednika" camunda:assignee="${odabrani_urednik}">
+    <bpmn:userTask id="Task_1c2jok2" name="Analiza od strane urednika" camunda:assignee="${articleChiefEditor}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="analiza_urednik_komentar_recenz_id" label="Komentar rezenzenta" type="string" defaultValue="${recenzent} - ${recenzija_komentar_uredniku_id}" />
@@ -618,7 +610,7 @@ if (formFields!=null){
       <bpmn:outgoing>SequenceFlow_1xtkfnu</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1xhdbff" sourceRef="Task_1t2r96t" targetRef="ExclusiveGateway_0phmbgp" />
-    <bpmn:userTask id="Task_1vhilwb" name="Ponovna analiza od strane urednika" camunda:assignee="${odabrani_urednik}">
+    <bpmn:userTask id="Task_1vhilwb" name="Ponovna analiza od strane urednika" camunda:assignee="${articleChiefEditor}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="ponovo_analiza_urednik_komentar_recenz_id" label="Komentar rezenzenta" type="string" defaultValue="${recenzent} - ${recenzija_komentar_uredniku_id}" />
