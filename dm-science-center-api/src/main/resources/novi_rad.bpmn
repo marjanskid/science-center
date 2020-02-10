@@ -190,12 +190,12 @@
       <bpmn:incoming>SequenceFlow_1s6it23</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0v7f8hs</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Task_1b1v9n5" name="Slanje mejlova autoru i glavnom uredniku" camunda:expression="${1 == 1}">
+    <bpmn:serviceTask id="Task_1b1v9n5" name="Slanje mejlova autoru i glavnom uredniku" camunda:class="root.sciencecenter.services.AuthorChiefEditorMail">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="root.sciencecenter.services.GetChiefEditor" event="start" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0v7f8hs</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0d4v1qr</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics>
-        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">2</bpmn:loopCardinality>
-      </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0v7f8hs" sourceRef="Task_1yowl21" targetRef="Task_1b1v9n5" />
     <bpmn:userTask id="Task_15ias2f" name="Provera relevantnosti rada" camunda:assignee="${chiefEditor}">
@@ -298,6 +298,9 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_02nmrx3" sourceRef="Task_0nmun6v" targetRef="SubProcess_1lrbpbr" />
     <bpmn:serviceTask id="Task_0nmun6v" name="Slanje mejla o ispravci autoru" camunda:expression="${1 == 1}">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="root.sciencecenter.services.AuthorCorrectionMail" event="start" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0ehr8lx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_02nmrx3</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -786,6 +789,9 @@ if (formFields!=null){
     </bpmn:subProcess>
     <bpmn:sequenceFlow id="SequenceFlow_1s6it23" sourceRef="SubProcess_1lrbpbr" targetRef="Task_1yowl21" />
     <bpmn:serviceTask id="Task_06c9t3e" name="Poruka o razlogu za odbijanje rada" camunda:expression="${1 == 1}">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="root.sciencecenter.services.AuthorIrrelevantMail" event="start" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_03crvku</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0zsudjw</bpmn:outgoing>
     </bpmn:serviceTask>

@@ -17,7 +17,7 @@ VALUES (2, 'Milos', 'Krstic', 'Ruma', 'Srbija', 'Bachelor', 'krsticm@gmail.com',
 
 INSERT INTO USER (ID, FIRST_NAME, LAST_NAME, CITY, COUNTRY, TITLE, EMAIL, USERNAME, PASSWORD, USER_ROLE,
                   ACTIVATED_USER, SCIENTIFIC_AREA_ID)
-VALUES (3, 'Marko', 'Arambasic', 'Vrbas', 'Srbija', 'Bachelor', 'markopaprika@gmail.com', 'maki',
+VALUES (3, 'Marko', 'Arambasic', 'Vrbas', 'Srbija', 'Bachelor', 'marjanskid@yahoo.com', 'maki',
         '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 0, true, 1);
 
 INSERT INTO MAGAZINE (ID, ACTIVE, ISSN_NUMBER, MAGAZINE_SUBSCRIBER, SUBSCRIPTION_PAYED, NAME, CHIEF_EDITOR_ID)
