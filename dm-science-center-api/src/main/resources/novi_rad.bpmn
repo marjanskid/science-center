@@ -245,7 +245,11 @@
     <bpmn:userTask id="Task_04rbud4" name="Provera ispravnosti teksta rada" camunda:assignee="${chiefEditor}">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="pregled_rada_pdf_tekst_id" label="Tekst PDF-a rada:" type="string" defaultValue="${info_rad_pdf_id}" />
+          <camunda:formField id="pregled_rada_pdf_tekst_id" label="Tekst PDF-a rada:" type="string" defaultValue="${info_rad_pdf_id}">
+            <camunda:properties>
+              <camunda:property id="readonly" value="true" />
+            </camunda:properties>
+          </camunda:formField>
           <camunda:formField id="pregled_rada_pdf_ok_id" label="Tekst PDF-a u redu?" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
@@ -718,9 +722,9 @@ if (formFields!=null){
         <bpmn:extensionElements>
           <camunda:formData>
             <camunda:formField id="prepravka_rada_komentar_id" label="Komentar glavnog urednika" type="string" defaultValue="${korekcija_rada_komentar_id}">
-              <camunda:validation>
-                <camunda:constraint name="readonly" config="true" />
-              </camunda:validation>
+              <camunda:properties>
+                <camunda:property id="readonly" value="true" />
+              </camunda:properties>
             </camunda:formField>
             <camunda:formField id="koautor_rad_ime_id" label="Ime" type="string" defaultValue="${koautor_rad_ime_id}">
               <camunda:properties>
