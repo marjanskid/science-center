@@ -1,5 +1,6 @@
 package root.sciencecenter.enums;
 
+
 public enum ScientificAreaEnum {
     INFORMATION_SYSTEMS,
     DATABASES,
