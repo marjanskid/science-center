@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -35,14 +36,25 @@ public class ItemController {
         log.info("items/all");
         List<Item> allItems = itemService.getAllItems();
         List<ItemDto> allItemsDto = new ArrayList<ItemDto>();
-        if (allItems.size() != 0) {
-            for(Item i : allItems) {
-                allItemsDto.add(this.convertToDto(i));
-            }
+        for(Item i : allItems) {
+            allItemsDto.add(this.convertToDto(i));
         }
 
         return new ResponseEntity<>(allItemsDto, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/{itemId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getItemById(@PathVariable String itemId) {
+        log.info("getItemById - id:" + itemId);
+        Item foundItem = itemService.getItemById(Long.parseLong(itemId));
+        if (foundItem != null) {
+            System.out.println("kurec");
+        } else {
+            System.out.println("null");
+        }
+        return new ResponseEntity<>(this.convertToDto(foundItem), HttpStatus.OK);
+    }
+
 
     @GetMapping(value = "/initialize", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> initialize() {
