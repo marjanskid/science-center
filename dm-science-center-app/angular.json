@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "dm-science-center-app"
+  "defaultProject": "dm-science-center-app",
+  "cli": {
+    "analytics": false
+  }
 }
