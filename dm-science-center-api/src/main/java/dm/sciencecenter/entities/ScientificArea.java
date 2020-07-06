@@ -3,24 +3,19 @@ package dm.sciencecenter.entities;
 import javax.persistence.*;
 
 @Entity
-public class Item {
+public class ScientificArea {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, length = 10)
-    private double price;
+    public ScientificArea() { }
 
-    public Item() {
-    }
-
-    public Item(String name, double price) {
+    public ScientificArea(String name) {
         this.name = name;
-        this.price = price;
     }
 
     public Long getId() {
@@ -37,13 +32,5 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 }

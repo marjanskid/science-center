@@ -1,3 +1,30 @@
-INSERT INTO ITEM (ID, NAME, PRICE) VALUES (1, 'Algebra', 540);
-INSERT INTO ITEM (ID, NAME, PRICE) VALUES (2, 'Nacionalna geografija', 250);
-INSERT INTO ITEM (ID, NAME, PRICE) VALUES (3, 'Bukvar', 1350);
+INSERT INTO SCIENTIFIC_AREA (ID, NAME) VALUES (1, 'Informacioni sistemi');
+INSERT INTO SCIENTIFIC_AREA (ID, NAME) VALUES (2, 'Baze podataka');
+INSERT INTO SCIENTIFIC_AREA (ID, NAME) VALUES (3, 'Veštačka inteligencija');
+INSERT INTO SCIENTIFIC_AREA (ID, NAME) VALUES (4, 'Softverski inženjering');
+INSERT INTO SCIENTIFIC_AREA (ID, NAME) VALUES (5, 'Računarske komunikacije');
+INSERT INTO SCIENTIFIC_AREA (ID, NAME) VALUES (6, 'Informacione tehnologije');
+
+INSERT INTO USER (ID, FIRST_NAME, LAST_NAME, CITY, COUNTRY, TITLE, EMAIL, USERNAME, PASSWORD, USER_ROLE,
+                  ACTIVATED_USER, SCIENTIFIC_AREA_ID)
+VALUES (1, 'Dusan', 'Marjanski', 'Melenci', 'Srbija', 'Bachelor', 'marjanskid@yahoo.com', 'admin',
+        '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, true, 1);
+
+INSERT INTO USER (ID, FIRST_NAME, LAST_NAME, CITY, COUNTRY, TITLE, EMAIL, USERNAME, PASSWORD, USER_ROLE,
+                  ACTIVATED_USER, SCIENTIFIC_AREA_ID)
+VALUES (2, 'Milos', 'Krstic', 'Ruma', 'Srbija', 'Bachelor', 'krsticm1996@gmail.com', 'krle',
+        '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 0, true, 3);
+
+INSERT INTO USER (ID, FIRST_NAME, LAST_NAME, CITY, COUNTRY, TITLE, EMAIL, USERNAME, PASSWORD, USER_ROLE,
+                  ACTIVATED_USER, SCIENTIFIC_AREA_ID)
+VALUES (3, 'Marko', 'Arambasic', 'Vrbas', 'Srbija', 'Bachelor', 'marjanskid@yahoo.com', 'maki',
+        '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 0, true, 1);
+
+INSERT INTO MAGAZINE (ID, ISSN_NUMBER, MAGAZINE_SUBSCRIBER, NAME, CHIEF_EDITOR_ID)
+VALUES (1, 1, 1, 'Nacionalna geografija', 3);
+
+INSERT INTO MAGAZINE (ID, ISSN_NUMBER, MAGAZINE_SUBSCRIBER, NAME, CHIEF_EDITOR_ID)
+VALUES (2, 11, 1, 'Top Speed', 3);
+
+INSERT INTO MAGAZINE (ID, ISSN_NUMBER, MAGAZINE_SUBSCRIBER, NAME, CHIEF_EDITOR_ID)
+VALUES (3, 55, 0, 'Svet kompjutera', 3);

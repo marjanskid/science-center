@@ -1,0 +1,10 @@
+package dm.sciencecenter.enums;
+
+public enum ScientificAreaEnum {
+    INFORMATION_SYSTEMS,
+    DATABASES,
+    ARTIFICIAL_INTELLIGENCE,
+    SOFTWARE_ENGINEERING,
+    COMPUTER_COMMUNICATIONS,
+    INFORMATION_TECHNOLOGIES
+}
