@@ -19,8 +19,8 @@ public class Magazine {
     @Column(unique = true, nullable = false)
     private Long issnNumber;
 
-    @OneToMany
-    private List<ScientificArea> scientificAreas;
+    @ManyToOne
+    private ScientificArea scientificArea;
 
     @Column(nullable = false)
     private MagazineSubscriber magazineSubscriber;
@@ -85,5 +85,37 @@ public class Magazine {
 
     public void setChiefEditor(User chiefEditor) {
         this.chiefEditor = chiefEditor;
+    }
+
+    public ScientificArea getScientificArea() {
+        return scientificArea;
+    }
+
+    public void setScientificArea(ScientificArea scientificArea) {
+        this.scientificArea = scientificArea;
+    }
+
+    public List<User> getReviewers() {
+        return reviewers;
+    }
+
+    public void setReviewers(List<User> reviewers) {
+        this.reviewers = reviewers;
+    }
+
+    public List<User> getEditors() {
+        return editors;
+    }
+
+    public void setEditors(List<User> editors) {
+        this.editors = editors;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 }

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map, first, catchError } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Item } from 'src/app/dtos/Item/item';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +17,10 @@ export class ItemService {
     console.log('ItemService -> getAllItems');
     return this.http.get(environment.apiUrl + '/science-center-api/item/all')
     .pipe(map(allItems => allItems));
+  }
+
+  getItemById(itemId) {
+    console.log('ItemService -> getItemById');
+    return this.http.get(environment.apiUrl + '/science-center-api/item/' + itemId) as Observable<Item>;
   }
 }

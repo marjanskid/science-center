@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllItemsComponent } from './views/all-items/all-items.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { BuyItemComponent } from './views/buy-item/buy-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SignUpComponent } from './views/sign-up/sign-up.component';
     FooterComponent,
     AllItemsComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    BuyItemComponent
   ],
   imports: [
     BrowserModule,

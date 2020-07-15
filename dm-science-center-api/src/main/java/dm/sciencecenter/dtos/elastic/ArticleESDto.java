@@ -1,29 +1,20 @@
-package dm.sciencecenter.dtos;
+package dm.sciencecenter.dtos.elastic;
 
-public class ArticleDto {
+public class ArticleESDto {
 
     private Long id;
     private String name;
     private String author;
     private String keyWords;
     private String articleAbstract;
-    private String magazine;
+    private String magazineName;
+    private String scientificField;
     private String articleFile;
     private String fileName;
+    private String highlight;
     private boolean openAccess;
 
-    public ArticleDto() { }
-
-    public ArticleDto(Long id, String name, String author, String keyWords, String articleAbstract, String magazine, String articleFile, String fileName, boolean openAccess) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-        this.keyWords = keyWords;
-        this.articleAbstract = articleAbstract;
-        this.magazine = magazine;
-        this.articleFile = articleFile;
-        this.fileName = fileName;
-        this.openAccess = openAccess;
+    public ArticleESDto() {
     }
 
     public Long getId() {
@@ -66,12 +57,20 @@ public class ArticleDto {
         this.articleAbstract = articleAbstract;
     }
 
-    public String getMagazine() {
-        return magazine;
+    public String getMagazineName() {
+        return magazineName;
     }
 
-    public void setMagazine(String magazine) {
-        this.magazine = magazine;
+    public void setMagazineName(String magazineName) {
+        this.magazineName = magazineName;
+    }
+
+    public String getScientificField() {
+        return scientificField;
+    }
+
+    public void setScientificField(String scientificField) {
+        this.scientificField = scientificField;
     }
 
     public String getArticleFile() {
@@ -88,6 +87,14 @@ public class ArticleDto {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(String highlight) {
+        this.highlight = highlight;
     }
 
     public boolean isOpenAccess() {

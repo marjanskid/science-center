@@ -14,33 +14,20 @@ export class AllItemsComponent implements OnInit {
   allItems: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private itemService: ItemService) {
-    console.log('constructor');
-    this.allItems = new Array<Item>();
-    this.initialize();
-   }
-
-  ngOnInit() {
-    console.log('oninit');
     this.getAllItems();
   }
+
+  ngOnInit() { }
 
   getAllItems() {
     this.itemService.getAllItems().subscribe(
       data => {
-        console.log(data);
         this.allItems = data;
       },
       error => {
-        console.log('pas mater');
-        console.log(error);
-        console.log('pas mater');
+        console.log("ERROR: " + error);
       }
     );
-  }
-
-  initialize() {
-    this.allItems.push(new Item(12, 'magazin1'));
-    this.allItems.push(new Item(24, 'Kobe The Black Mamba'));
   }
 
 }

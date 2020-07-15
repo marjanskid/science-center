@@ -12,7 +12,7 @@ public class ArticleES {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Field(type= FieldType.Integer)
+    @Field(type= FieldType.Long)
     private Long id;
 
     @Field(type = FieldType.Text, searchAnalyzer = "serbian", analyzer = "serbian")
@@ -34,21 +34,21 @@ public class ArticleES {
     private String scientificField;
 
     @Field(type = FieldType.Text, searchAnalyzer = "serbian", analyzer = "serbian")
-    private String file;
+    private String articleFile;
 
     @Field(type = FieldType.Text, searchAnalyzer = "serbian", analyzer = "serbian")
     private String fileName;
 
     public ArticleES() { }
 
-    public ArticleES(String name, String author, String keyWords, String articleAbstract, String magazineName, String scientificField, String file, String fileName) {
+    public ArticleES(String name, String author, String keyWords, String articleAbstract, String magazineName, String scientificField, String articleFile, String fileName) {
         this.name = name;
         this.author = author;
         this.keyWords = keyWords;
         this.articleAbstract = articleAbstract;
         this.magazineName = magazineName;
         this.scientificField = scientificField;
-        this.file = file;
+        this.articleFile = articleFile;
         this.fileName = fileName;
     }
 
@@ -108,12 +108,12 @@ public class ArticleES {
         this.scientificField = scientificField;
     }
 
-    public String getFile() {
-        return file;
+    public String getArticleFile() {
+        return articleFile;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setArticleFile(String articleFile) {
+        this.articleFile = articleFile;
     }
 
     public String getFileName() {

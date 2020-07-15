@@ -4,6 +4,7 @@ import { HomepageComponent } from './views/homepage/homepage.component';
 import { AllItemsComponent } from './views/all-items/all-items.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { BuyItemComponent } from './views/buy-item/buy-item.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
     children: [
       { path: '', component: AllItemsComponent },
     ]
+  },
+  {
+    path: 'buy-item/:itemId',
+    component: BuyItemComponent
   },
 ];
 

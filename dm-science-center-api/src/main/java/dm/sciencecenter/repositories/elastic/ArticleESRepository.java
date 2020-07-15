@@ -5,5 +5,4 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 public interface ArticleESRepository extends ElasticsearchRepository<ArticleES, Long> {
 
-    ArticleES save(ArticleES articleES);
 }

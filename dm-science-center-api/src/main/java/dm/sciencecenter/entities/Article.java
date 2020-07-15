@@ -24,6 +24,12 @@ public class Article {
     @Column(nullable = false)
     private String articleAbstract;
 
+    @Column(nullable = false)
+    private String fileName;
+
+    @Column(nullable = false)
+    private boolean openAccess;
+
     @OneToOne
     @JsonBackReference
     private ScientificArea scientificArea;
@@ -50,6 +56,7 @@ public class Article {
         this.author = articleDto.getAuthor();
         this.keyWords = articleDto.getKeyWords();
         this.articleAbstract = articleDto.getArticleAbstract();
+        this.openAccess = articleDto.isOpenAccess();
     }
 
     public Long getId() {
@@ -106,5 +113,21 @@ public class Article {
 
     public void setMagazine(Magazine magazine) {
         this.magazine = magazine;
+    }
+
+    public boolean isOpenAccess() {
+        return openAccess;
+    }
+
+    public void setOpenAccess(boolean openAccess) {
+        this.openAccess = openAccess;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
